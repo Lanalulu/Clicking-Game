@@ -1,0 +1,31 @@
+body {
+	font-family: Verdana, Geneva, sans-serif;
+	margin: 0;
+	background-color: #ccffff;
+}
+
+#container {
+	width: 100%;
+}
+
+header {
+	text-align: center;
+}
+
+h1 {
+	font-size: 45px;
+	color: #000066;
+}
+
+#box {
+	width: 200px;
+	height: 200px;
+	background-color: red;
+	display: none;
+	position: relative;
+}
+
+#feedback {
+	color: #ff0066;
+	font-style: italic;
+}

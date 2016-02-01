@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Clicking Game</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<meta charset="utf-8" />
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+
+<body>
+
+	<div id="container">
+		<header>
+			<h1>Welcome to the Clicking Game</h1>
+			<p id="reaction">Reaction time: <span id="time">0</span>s</p>
+			<p><span id="feedback">Click a shape to begin playing.</span></p>
+			<p id="prize"></p>
+		</header>
+
+		<div id="box"></div>
+
+	</div>
+
+<script type="text/javascript">
+
+window.onload=function(){
+
+	var box = document.getElementById('box');
+
+	var time; var clickedTime; var createdTime; var reactionTime; var randomColor;
+
+	function makeBox(){
+
+		time = Math.random() * 5000;
+
+		setTimeout(function(){
+
+			if (Math.random() > 0.5) {
+				var circle = box.style.borderRadius="50%";
+			} else {
+
+				box.style.borderRadius="0";
+
+			}
+
+			var top = Math.random();
+
+			top = top*245;
+
+			var left = Math.random();
+
+			left = left*1000;
+
+			box.style.top=top+"px";
+			box.style.left=left+"px";
+
+			var color = "#"
+
+			randomColor=Math.floor(Math.random()*16777215).toString(16);
+
+			box.style.backgroundColor=color + randomColor;
+
+			box.style.display="block";
+
+			createdTime=Date.now();
+
+		}, time);
+	}
+
+	box.onclick=function(){
+
+		clickedTime=Date.now();
+
+		reactionTime=(clickedTime-createdTime)/1000;
+
+		document.getElementById('time').innerHTML = reactionTime;
+
+		this.style.display="none";
+
+		if (reactionTime <= 0.7) {
+			document.getElementById('feedback').innerHTML = "Impressive! You deserve a prize:";
+			document.getElementById('prize').innerHTML = "<iframe width='560' height='315' src='https://www.youtube.com/embed/ejpMgF1pugQ' frameborder='0' allowfullscreen></iframe>";
+		} else if (reactionTime < 1) {
+			document.getElementById('feedback').innerHTML = "Hey, hey! Not bad.";
+		} else if (reactionTime <= 2) {
+			document.getElementById('feedback').innerHTML = "Try to get under 1 second!";
+		} else {
+			document.getElementById('feedback').innerHTML = "Eh? Did you leave the room to make a sandwich? Come on. Shoot for the stars!";
+		}
+
+		makeBox();
+	}
+
+	makeBox();
+}
+
+</script>
+
+</body>
+</html>
